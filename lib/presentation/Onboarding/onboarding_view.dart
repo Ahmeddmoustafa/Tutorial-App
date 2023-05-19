@@ -35,6 +35,14 @@ class _OnBoardingViewState extends State<OnBoardingView> {
     // _SkipButtonTextKey = GlobalKey();
   }
 
+  Widget getSliderIcon(int index) {
+    if (currentPageIndex == index) {
+      return Image.asset(AssetsManager.SolidCircleIcon);
+    }
+
+    return Image.asset(AssetsManager.HollowCircleIcon);
+  }
+
   @override
   Widget build(BuildContext context) {
     final appTheme = Theme.of(context);
@@ -106,18 +114,34 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                Image.asset(AssetsManager.HollowCircleIcon),
-                                Image.asset(AssetsManager.HollowCircleIcon),
-                                Image.asset(AssetsManager.HollowCircleIcon),
-                                Image.asset(AssetsManager.HollowCircleIcon),
+                                for (int i = 0; i < _list.length; i++)
+                                  getSliderIcon(i)
                               ],
                             ),
                           )),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: Icon(
-                          Icons.arrow_forward,
-                          color: ColorManager.White,
+                      GestureDetector(
+                        onTap: () {
+                          if (currentPageIndex == _list.length - 1) {
+                            _pageController.animateToPage(
+                              0, // the page number you want to navigate to
+                              duration: const Duration(milliseconds: 200),
+                              curve: Curves.ease,
+                            );
+                          } else {
+                            _pageController.animateToPage(
+                              currentPageIndex +
+                                  1, // the page number you want to navigate to
+                              duration: const Duration(milliseconds: 200),
+                              curve: Curves.ease,
+                            );
+                          }
+                        },
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Icon(
+                            Icons.arrow_forward,
+                            color: ColorManager.White,
+                          ),
                         ),
                       )
                     ],

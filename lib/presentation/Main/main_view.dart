@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dev/Resources/colors_manager.dart';
+import 'package:flutter_dev/Resources/values_manager.dart';
 
 class MainView extends StatefulWidget {
   const MainView({Key? key}) : super(key: key);
@@ -13,14 +14,17 @@ class _MainViewState extends State<MainView> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
-            Icon(Icons.home),
-            Icon(Icons.home),
-            Icon(Icons.home),
-            Icon(Icons.home),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: AppPadding.p8),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: const [
+              Icon(Icons.home),
+              Icon(Icons.home),
+              Icon(Icons.home),
+              Icon(Icons.home),
+            ],
+          ),
         ),
       ),
       appBar: AppBar(
@@ -42,7 +46,19 @@ class _MainViewState extends State<MainView> {
             child: Center(
               child: Container(
                 color: ColorManager.DarkGrey,
-                width: MediaQuery.of(context).size.width,
+                // child: ListView.builder(
+                //   itemBuilder: (context, index) {
+                //     return Container(
+                //       margin:
+                //           const EdgeInsets.symmetric(horizontal: AppPadding.p8),
+                //       height: 100,
+                //       width: 100,
+                //       color: ColorManager.White,
+                //     );
+                //   },
+                //   itemCount: 5,
+                // ),
+                // width: MediaQuery.of(context).size.width,
               ),
             ),
           ),

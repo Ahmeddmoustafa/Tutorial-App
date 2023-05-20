@@ -2,37 +2,70 @@ import 'dart:async';
 
 import 'package:flutter_dev/Domain/models.dart';
 import 'package:flutter_dev/presentation/Base/baseviewmodel.dart';
-import 'package:flutter_dev/presentation/Onboarding/onboarding_view.dart';
+
+import '../../../Resources/assets_manager.dart';
 
 class OnBoardingViewModel extends BaseViewModel
     with OnBoardingViewModelInput, OnBoardingViewModelOutput {
   // stream controllers outputs
-  StreamController _streamController = StreamController<SliderViewObject>();
-  @override
-  void start() {}
+  final StreamController _streamController =
+      StreamController<SliderViewObject>();
+  late int _currentPageIndex;
+  late final List<OnBoardingSlider> _list;
 
   @override
-  void dispose() {}
+  void start() {
+    _currentPageIndex = 0;
+    _list = _getSliderData();
+    _sendToVIew();
+  }
 
   @override
-  void goNext() {}
+  void dispose() {
+    _streamController.close();
+  }
 
   @override
-  void onPageChanged(int index) {}
+  int goNext() {
+    int nextindex = ++_currentPageIndex;
+    if (nextindex == _list.length) nextindex = 0;
+    return nextindex;
+  }
 
   @override
-  Sink get inputSliderObject => throw UnimplementedError();
+  void onPageChanged(int index) {
+    _currentPageIndex = index;
+    _sendToVIew();
+  }
 
   @override
-  Sink get outputSliderObject => throw UnimplementedError();
+  Sink get inputSliderObject => _streamController.sink;
+
+  @override
+  Stream<SliderViewObject> get outputSliderObject =>
+      _streamController.stream.map((sliderViewObject) => sliderViewObject);
+
+// PRIVATE FUNCTIONS
+
+  void _sendToVIew() {
+    inputSliderObject.add(SliderViewObject(
+        _list[_currentPageIndex], _list.length, _currentPageIndex));
+  }
+
+  List<OnBoardingSlider> _getSliderData() => [
+        OnBoardingSlider("title", "subtitle", AssetsManager.OnBoardingLogo),
+        OnBoardingSlider("title2", "subtitle2", AssetsManager.OnBoardingLogo2),
+        OnBoardingSlider("title3", "subtitle3", AssetsManager.OnBoardingLogo3),
+        OnBoardingSlider("title4", "subtitle4", AssetsManager.OnBoardingLogo4),
+      ];
 }
 
 abstract class OnBoardingViewModelInput {
-  void goNext();
+  int goNext();
   void onPageChanged(int index);
   Sink get inputSliderObject;
 }
 
 abstract class OnBoardingViewModelOutput {
-  Sink get outputSliderObject;
+  Stream<SliderViewObject> get outputSliderObject;
 }

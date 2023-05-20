@@ -44,6 +44,11 @@ class _OnBoardingViewState extends State<OnBoardingView> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final appTheme = Theme.of(context);
     // final textTheme = Theme.of(context).textTheme;
@@ -198,34 +203,6 @@ class OnBoardingPage extends StatelessWidget {
                         Provider.of<ThemeProvider>(context, listen: false)
                             .toogleThemeMode(),
                       }),
-
-              // TextButton(
-              //   onPressed: () => {
-              //     _pageController.animateToPage(
-              //       index + 1, // the page number you want to navigate to
-              //       duration: const Duration(milliseconds: 200),
-              //       curve: Curves.ease,
-              //     )
-              //   },
-              //   child: const Text(
-              //     "Skip",
-              //   ),
-              // ),
-
-              // ElevatedButton(
-              //   key: _SkipButtonKey,
-              //   onPressed: () => {
-              //     _pageController.animateToPage(
-              //       index + 1, // the page number you want to navigate to
-              //       duration: const Duration(milliseconds: 300),
-              //       curve: Curves.ease,
-              //     )
-              //   },
-              //   child: Text(
-              //     "Skip",
-              //     key: _SkipButtonTextKey,
-              //   ),
-              // ),
             ],
           ),
         ),

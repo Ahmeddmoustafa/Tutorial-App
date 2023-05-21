@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_dev/Resources/Theme/theme_data.dart';
+import 'package:flutter_dev/Resources/colors_manager.dart';
 import 'package:flutter_dev/Resources/routes_manager.dart';
 import 'package:flutter_dev/provider/theme_provider.dart';
 import 'package:provider/provider.dart';
@@ -36,7 +37,8 @@ class _MyAppState extends State<MyApp> {
     // Provider.of<ThemeProvider>(context).addListener(() => setState(() {}));
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
-          statusBarColor: Colors.white, statusBarBrightness: Brightness.dark),
+          // statusBarColor: Color(0xffED9728),
+          statusBarBrightness: Brightness.dark),
     );
     return MultiProvider(
       providers: [

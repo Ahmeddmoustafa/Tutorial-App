@@ -11,13 +11,13 @@ TextStyle _getTextStyle(FontWeight weight, double fontsize, Color color) {
     fontSize: fontsize,
     color: color,
     fontFamily: FontConstants.fontsFamily,
-    backgroundColor: ColorManager.Transparent,
-    letterSpacing: 0.5,
-    wordSpacing: 0,
-    height: 1.5,
-    decorationColor: ColorManager.Transparent,
-    decorationThickness: 0.0,
-  );
+    // backgroundColor: ColorManager.Transparent,
+    // letterSpacing: 0.5,
+    // wordSpacing: 0,
+    // height: 1.5,
+    // decorationColor: ColorManager.Transparent,
+    // decorationThickness: 0.0,
+  ).copyWith(inherit: true);
 }
 
 TextStyle getRegularStyle(

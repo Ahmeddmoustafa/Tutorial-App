@@ -4,4 +4,5 @@ class AppStrings {
   static const onBoardingSubtitle =
       "Tut app is an awesome flutter application using clean architecture #1";
   static const skip = "Skip";
+  static const services = "Services";
 }

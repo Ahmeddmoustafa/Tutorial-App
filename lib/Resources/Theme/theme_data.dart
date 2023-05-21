@@ -21,14 +21,21 @@ ThemeData getApplicationtheme(bool dark) {
         ),
       ),
       textTheme: TextTheme(
+        titleMedium: getMediumStyle(
+          color: ColorManager.White,
+        ),
         displayLarge: getSemiBoldStyle(
-          color: ColorManager.DarkGrey,
+          color: ColorManager.Black,
           fontsize: FontSize.s16,
         ),
         bodyLarge: getRegularStyle(
-          color: ColorManager.DarkGrey,
+          color: ColorManager.Black,
+          fontsize: FontSize.s14,
         ),
-      ),
+      ).apply(
+          // bodyColor: ColorManager.White,
+          // displayColor: ColorManager.Black,
+          ),
     );
   }
   return ThemeData(
@@ -90,7 +97,14 @@ ThemeData getApplicationtheme(bool dark) {
         color: ColorManager.PrimaryColor,
         fontsize: FontSize.s16,
       ),
-      bodyLarge: getRegularStyle(color: ColorManager.DarkGrey),
+      bodyLarge: getRegularStyle(
+        color: ColorManager.Black,
+        fontsize: FontSize.s14,
+      ),
+      bodyMedium: getRegularStyle(
+        color: ColorManager.PrimaryColor,
+        fontsize: FontSize.s14,
+      ),
     ),
     // ******************** Input theme ********************
 
